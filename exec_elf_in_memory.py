@@ -41,8 +41,8 @@ def execAnonFile(fd,args,wait_for_proc_terminate):
             print("New process is now orphaned")
 
 # MAIN CODE
-elf_contents = b"" # ELF contents, example format: b"\x23\x57..."
-args = [] # List of arguments to pass to program
+elf_contents = b"" # ELF contents, format: b"\x23\x57..."
+args = [] # List of arguments to pass to program; format: ["arg1","arg2",...], leave it empty for no arguments.
 wait_for_proc_terminate = True # Wait for new spawned process to terminate
 
 try:

@@ -55,8 +55,8 @@ def execAnonFile(fd,args,wait_for_proc_terminate):
             print("New process is now orphaned")
 
 # MAIN CODE
-url = "" # To download elf from
-args = [] # List of arguments to pass to program
+url = "" # To download elf from; format: http://your-server/your_elf
+args = [] # List of arguments to pass to program; format: ["arg1","arg2",...], leave it empty for no arguments.
 wait_for_proc_terminate = True # Wait for new spawned process to terminate
 
 try:
