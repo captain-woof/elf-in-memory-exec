@@ -7,9 +7,7 @@ from urllib import request,error
 
 def createFd():
     print("Creating anonymous fd")
-    s = ""
-    for _ in range(7):
-        s += choice(ascii_lowercase)
+    s = "".join(choice(ascii_lowercase) for l in range(7))
 
     fd = os.memfd_create(s,0)
     if fd == -1:
