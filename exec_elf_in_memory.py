@@ -6,7 +6,7 @@ from string import ascii_lowercase
 from urllib import request,error
 
 def createFd():
-    print('Creating anonymous fd')
+    print('[+] Creating anonymous fd')
     s = ''.join(choice(ascii_lowercase) for _ in range(7))
 
     fd = os.memfd_create(s,0)
